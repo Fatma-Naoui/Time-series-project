@@ -1,26 +1,25 @@
 # Time Series Project
 
-A structured exploration of two real-world monthly time series, applying EDA, trend/seasonality adjustment, structural-break analysis and ARIMA modeling of residuals.
-
----
+A structured exploration of two real-world monthly time series, applying exploratory data analysis (EDA), trend & seasonality adjustment, structural-break analysis, and ARIMA modeling of residuals.
 
 ## Repository Structure
 
     Time-series-project/
-    ├── Industrial_food_production.ipynb   R notebook for industrial food-production series
-    ├── Real_estate_construction.ipynb     R notebook for real-estate construction series
-    └── README.md                          Project overview and instructions
-
----
+    ├── data/
+    │   ├── industrial_food_production.xlsx    Raw Excel data for food-production series
+    │   └── real_estate_construction.xlsx      Raw Excel data for real-estate construction series
+    ├── notebooks/
+    │   ├── Industrial_food_production.ipynb   R notebook: industrial food-production series analysis
+    │   └── Real_estate_construction.ipynb     R notebook: real-estate construction series analysis
+    └── README.md                              Project overview and instructions
 
 ## Notebooks
 
-### Industrial_food_production.ipynb  
-**Dataset:** Monthly industrial food-production (units)
-
+### notebooks/Industrial_food_production.ipynb  
+**Dataset:** `data/industrial_food_production.xlsx` (monthly units)  
 **Phase 1 – Statistical & Graphical Analysis**  
 - Chronogram (time plot)  
-- Correlogram (ACF/PACF)  
+- Correlogram (ACF / PACF)  
 
 **Phase 2 – Trend & Seasonality Adjustment**  
 - Linear regression for trend  
@@ -28,35 +27,30 @@ A structured exploration of two real-world monthly time series, applying EDA, tr
 - Significance checks and variable selection  
 
 **Phase 3 – ARIMA Modeling of Residuals**  
-- Extract adjusted-residual series  
-- Diagnostics: ACF/PACF plots, Augmented Dickey-Fuller test  
-- Fit candidate ARIMA(p,0,q) models and compare by AIC and residual variance  
-- Select and interpret the best model  
+- Extract deseasonalized residual series  
+- Diagnostics: ACF / PACF plots, Augmented Dickey–Fuller test  
+- Fit candidate `ARIMA(p,0,q)` models, compare by AIC & residual variance  
+- Select & interpret the best-fitting model  
 
----
-
-### Real_estate_construction.ipynb  
-**Dataset:** Monthly real-estate construction index (log-transformed)
-
+### notebooks/Real_estate_construction.ipynb  
+**Dataset:** `data/real_estate_construction.xlsx` (monthly index, log-transformed)  
 **Phase 1 – Statistical & Graphical Analysis**  
 - Chronogram (time plot)  
-- Correlogram (ACF/PACF)  
+- Correlogram (ACF / PACF)  
 
 **Phase 2 – Structural-Break & Regression**  
 - Breakpoint detection via `strucchange::breakpoints()`  
 - Fourier seasonal terms (sine/cosine) generation  
 - Fit two regression models:  
   1. Full set of Fourier terms  
-  2. Subset of significant terms  
-- Compare summaries and choose parsimonious fit  
+  2. Subset of statistically significant terms  
+- Compare summaries and choose the parsimonious fit  
 
 **Phase 3 – ARIMA Modeling of Regression Residuals**  
-- Extract residuals from Model 2  
-- Diagnostics: ACF/PACF, ADF test on residuals  
-- Fit various ARIMA(p,0,q) models on residuals  
-- Evaluate by AIC, residual variance, RMSE/MAE and whiteness  
-
----
+- Extract residuals from selected regression model  
+- Diagnostics: ACF / PACF plots, ADF test on residuals  
+- Fit `Arima(residuals, order = c(p,0,q))` models  
+- Evaluate by AIC, residual variance, RMSE/MAE, and whiteness  
 
 ## Prerequisites
 
@@ -67,12 +61,10 @@ A structured exploration of two real-world monthly time series, applying EDA, tr
       "tseries",     # ADF test
       "forecast",    # ARIMA modeling
       "strucchange", # Breakpoint detection
-      "ggplot2"      # Enhanced plotting
+      "ggplot2"      # Visualization
     ))
     ```
-- **Jupyter** (optional, for running `.ipynb` files)
-
----
+- **Jupyter Notebook** (optional, to run `.ipynb` files)
 
 ## Usage
 

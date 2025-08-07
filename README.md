@@ -5,10 +5,13 @@ A structured exploration of two real‐world monthly time series, applying rigor
 ---
 
 ## Repository Structure
+
+```text
 Time-series-project/
-├── Industrial_food_production.ipynb # R notebook for food‐production series
-├── Real_estate_construction.ipynb # R notebook for real‐estate series
-└── README.md # Project overview and instructions
+├── Industrial_food_production.ipynb     # R notebook for industrial food‐production series
+├── Real_estate_construction.ipynb       # R notebook for real‐estate construction series
+└── README.md                            # Project overview and instructions
+
 
 ## Notebooks
 
